@@ -1,6 +1,7 @@
 ﻿using DatabaseLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -48,6 +49,7 @@ namespace OnlineDiagnosticSystem.Controllers
                 return View("Index");
 
             }
+            ViewBag.message = "Username and password incorrect";
             Logout();
             return View("Login");
 
@@ -65,6 +67,47 @@ namespace OnlineDiagnosticSystem.Controllers
             Session["isVerified"] = string.Empty;
           
         }
+
+
+        public ActionResult ChangePassword()
+        {
+          
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(string OldPassword, string NewPassword, string ConfirmPassword)
+        {
+            if (Session["UserID"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            int? userid = Convert.ToInt32(Session["UserID"].ToString());
+            UserTable users = db.UserTables.Find(userid);
+            if(users.Password == OldPassword)
+            {
+                if(NewPassword == ConfirmPassword)
+                {
+                    users.Password = NewPassword;
+                    db.Entry(users).State = EntityState.Modified;
+                    db.SaveChanges();
+                    ViewBag.message = "Change Successfully";
+                    return RedirectToAction("Login", "Home");
+                }
+                else
+                {
+                    ViewBag.message = "new and confirm password not match";
+                    return View("ChangePassword");
+                }
+            }
+            else
+            {
+                ViewBag.message = "Old password is wrong";
+                return View("ChangePassword");
+            }
+
+        }
+
 
         public ActionResult About()
         {

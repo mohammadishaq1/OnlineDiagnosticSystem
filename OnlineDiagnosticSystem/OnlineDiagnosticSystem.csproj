@@ -127,6 +127,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountTypeTablesController.cs" />
+    <Compile Include="Controllers\GenderTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserTypeTablesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -566,6 +567,12 @@
     <Content Include="Views\AccountTypeTables\Details.cshtml" />
     <Content Include="Views\AccountTypeTables\Edit.cshtml" />
     <Content Include="Views\AccountTypeTables\Index.cshtml" />
+    <Content Include="Views\GenderTables\Create.cshtml" />
+    <Content Include="Views\GenderTables\Delete.cshtml" />
+    <Content Include="Views\GenderTables\Details.cshtml" />
+    <Content Include="Views\GenderTables\Edit.cshtml" />
+    <Content Include="Views\GenderTables\Index.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

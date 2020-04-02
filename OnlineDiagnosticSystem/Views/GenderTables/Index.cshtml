@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DatabaseLayer.AccountTypeTable>
+﻿@model IEnumerable<DatabaseLayer.GenderTable>
 
 @{
     ViewBag.Title = "Index";
@@ -23,8 +23,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AccountTypeID }, new { @class = "genric-btn default" })
-     
+            @Html.ActionLink("Edit", "Edit", new { id=item.GenderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.GenderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.GenderID })
         </td>
     </tr>
 }
