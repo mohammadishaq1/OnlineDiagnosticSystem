@@ -109,6 +109,59 @@ namespace OnlineDiagnosticSystem.Controllers
         }
 
 
+        public ActionResult CreateUser()
+        {
+
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables.Where(u => u.UserTypeID != 1), "UserTypeID", "UserType", "0");
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult CreateUser(UserTable user)
+        {
+
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables.Where(u => u.UserTypeID != 1), "UserTypeID", "UserType", "0");
+            return View();
+        }
+
+        public ActionResult AddDocotor()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddDocotor(DoctorTable doctor)
+        {
+
+            return View();
+        }
+
+        public ActionResult AddLab()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddLab(LabTable lab)
+        {
+
+            return View();
+        }
+
+        public ActionResult AddPatient()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddPatient(PatientTable patient)
+        {
+
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
