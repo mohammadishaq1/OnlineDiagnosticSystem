@@ -191,7 +191,7 @@ namespace OnlineDiagnosticSystem.Controllers
         public ActionResult AddDoctor()
         {
             ViewBag.GenderID = new SelectList(db.GenderTables.ToList(), "GenderID", "Name", "0");
-            ViewBag.AccountTypeID = new SelectList(db.GenderTables.ToList(), "AccountTypeID", "Name", "0");
+            ViewBag.AccountTypeID = new SelectList(db.AccountTypeTables.ToList(), "AccountTypeID", "Name", "0");
             return View();
         }
         [HttpPost]
@@ -201,12 +201,10 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 var user = (UserTable)Session["User"];
                 doctor.UserID = user.UserID;
-
-            
-            var finddoctor = db.DoctorTables.Where(d => d.EmailAddress == doctor.EmailAddress).FirstOrDefault();
             if (ModelState.IsValid)
             {
-                if (finddoctor == null)
+                    var finddoctor = db.DoctorTables.Where(d => d.EmailAddress == doctor.EmailAddress).FirstOrDefault();
+                    if (finddoctor == null)
                 {
                     db.DoctorTables.Add(doctor);
                     db.SaveChanges();
@@ -226,21 +224,25 @@ namespace OnlineDiagnosticSystem.Controllers
                         }
                     }
                 }
-               
-            }
+                    else
+                    {
+                        ViewBag.Message = "Already registered";
+                    }
+
+                }
             }
             else
             {
                 return RedirectToAction("Login");
             }
             ViewBag.GenderID = new SelectList(db.GenderTables.ToList(), "GenderID", "Name", doctor.GenderID);
-            ViewBag.AccountTypeID = new SelectList(db.GenderTables.ToList(), "AccountTypeID", "Name", doctor.AccountTypeID);
+            ViewBag.AccountTypeID = new SelectList(db.AccountTypeTables.ToList(), "AccountTypeID", "Name", doctor.AccountTypeID);
             return View(doctor);
         }
 
         public ActionResult AddLab()
         {
-            ViewBag.AccountTypeID = new SelectList(db.GenderTables.ToList(), "AccountTypeID", "Name", "0");
+            ViewBag.AccountTypeID = new SelectList(db.AccountTypeTables.ToList(), "AccountTypeID", "Name", "0");
             return View();
         }
 
@@ -278,6 +280,10 @@ namespace OnlineDiagnosticSystem.Controllers
                             }
                         }
                     }
+                    else
+                    {
+                        ViewBag.Message = "Already registered";
+                    }
 
                 }
             }
@@ -286,20 +292,62 @@ namespace OnlineDiagnosticSystem.Controllers
                 return RedirectToAction("Login");
             }
           
-            ViewBag.AccountTypeID = new SelectList(db.GenderTables.ToList(), "AccountTypeID", "Name", lab.AccountTypeID);
+            ViewBag.AccountTypeID = new SelectList(db.AccountTypeTables.ToList(), "AccountTypeID", "Name", lab.AccountTypeID);
             return View(lab);
         }
 
         public ActionResult AddPatient()
         {
+            ViewBag.GenderID = new SelectList(db.GenderTables.ToList(), "GenderID", "Name", "0");
 
             return View();
         }
         [HttpPost]
         public ActionResult AddPatient(PatientTable patient)
         {
+            if (Session["User"] != null)
+            {
 
-            return View();
+                var user = (UserTable)Session["User"];
+                patient.UserID = user.UserID;
+
+                if (ModelState.IsValid)
+                {
+                    var findpatient = db.PatientTables.Where(d => d.Email == patient.Email).FirstOrDefault();
+                    if (findpatient == null)
+                    {
+                        db.PatientTables.Add(patient);
+                        db.SaveChanges();
+
+                        if (patient.LogoFile != null)
+                        {
+                            var folder = "~/Content/PatientImages";
+                            var file = string.Format("{0}.png", patient.PatientID);
+                            var response = FileHelpers.UploadPhoto(patient.LogoFile, folder, file);
+                            if (response)
+                            {
+                                var pic = string.Format("{0}/{1}", folder, file);
+                                patient.Photo = pic;
+                                db.Entry(patient).State = EntityState.Modified;
+                                db.SaveChanges();
+                             
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Already registered";
+                    }
+
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+            ViewBag.GenderID = new SelectList(db.GenderTables.ToList(), "GenderID", "Name", patient.PatientID);
+
+            return View(patient);
         }
 
         public ActionResult UnderReview()
