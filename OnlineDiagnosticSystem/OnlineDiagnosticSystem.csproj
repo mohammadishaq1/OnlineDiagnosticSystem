@@ -130,6 +130,7 @@
     <Compile Include="Controllers\GenderTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserTypeTablesController.cs" />
+    <Compile Include="FileHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -574,9 +575,15 @@
     <Content Include="Views\GenderTables\Index.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
+    <Content Include="Views\Home\AddDoctor.cshtml" />
+    <Content Include="Views\Home\AddLab.cshtml" />
+    <Content Include="Views\Home\AddPatient.cshtml" />
+    <Content Include="Views\Home\UnderReview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\DoctorImages\" />
+    <Folder Include="Content\LabImages\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
