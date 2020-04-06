@@ -50,7 +50,44 @@ namespace OnlineDiagnosticSystem.Controllers
                 return View("Index");
 
             }
-            ViewBag.message = "Username and password incorrect";
+            user = db.UserTables.Where(u => u.Email == email && u.Password == password && u.isVerified == false).FirstOrDefault();
+            if(user != null)
+            {
+                ViewBag.Message = "Emal already exisit please enter detials";
+                Session["User"] = user;
+                if (user.UserTypeID == 2) //doctor
+                {
+                    var doc = db.DoctorTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    if (doc == null)
+                    {
+                        return RedirectToAction("AddDoctor");
+                    }
+                    ViewBag.Message = "Account is under review";
+
+                }
+                else if (user.UserTypeID == 3) // lab
+                {
+                    var lab = db.LabTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    if (lab == null)
+                    {
+                        return RedirectToAction("AddLab");
+                    }
+                    ViewBag.Message = "Account is under review";
+                }
+                else if (user.UserTypeID == 4) // patient
+                {
+                    var pat = db.PatientTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    if (pat == null)
+                    {
+                        return RedirectToAction("AddPatient");
+                    }
+                    ViewBag.Message = "Account is under review";
+                }
+            }
+            else
+            {
+                ViewBag.message = "Username and password incorrect";
+            }
             Logout();
             return View("Login");
 
@@ -168,15 +205,44 @@ namespace OnlineDiagnosticSystem.Controllers
                                 ViewBag.Message = "Account is under review";
                             }
                         }
-                        else
-                        {
-                            ViewBag.Message = "Account is under review";
-                        }
                     }
                     else
                     {
-                        ViewBag.Message = "Account already exist";
+                        ViewBag.Message = "Emal already exisit please enter detials";
+                        Session["User"] = finduser;
+                        if (finduser.UserTypeID == 2) //doctor
+                        {
+                            var doc = db.DoctorTables.Where(u => u.UserID == finduser.UserID).FirstOrDefault();
+                            if (doc == null)
+                            {
+                                return RedirectToAction("AddDoctor");
+                            }
+                            ViewBag.Message = "Account is under review";
+                            
+                        }
+                        else if (finduser.UserTypeID == 3) // lab
+                        {
+                            var lab = db.LabTables.Where(u => u.UserID == finduser.UserID).FirstOrDefault();
+                            if (lab == null)
+                            {
+                                return RedirectToAction("AddLab");
+                            }
+                            ViewBag.Message = "Account is under review";
+                        }
+                        else if (finduser.UserTypeID == 4) // patient
+                        {
+                            var pat = db.PatientTables.Where(u => u.UserID == finduser.UserID).FirstOrDefault();
+                            if (pat == null)
+                            {
+                                return RedirectToAction("AddPatient");
+                            }
+                            ViewBag.Message = "Account is under review";
+                        }
+                        
+
                     }
+                    
+                    
                 }
             }
             else
@@ -318,7 +384,6 @@ namespace OnlineDiagnosticSystem.Controllers
                     {
                         db.PatientTables.Add(patient);
                         db.SaveChanges();
-
                         if (patient.LogoFile != null)
                         {
                             var folder = "~/Content/PatientImages";
@@ -330,9 +395,10 @@ namespace OnlineDiagnosticSystem.Controllers
                                 patient.Photo = pic;
                                 db.Entry(patient).State = EntityState.Modified;
                                 db.SaveChanges();
-                             
+                                
                             }
                         }
+                        return RedirectToAction("Login");
                     }
                     else
                     {
