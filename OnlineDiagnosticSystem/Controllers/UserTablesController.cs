@@ -10,30 +10,22 @@ using DatabaseLayer;
 
 namespace OnlineDiagnosticSystem.Controllers
 {
-    public class UserTypeTablesController : Controller
+    public class UserTablesController : Controller
     {
         private OnlineDiagnosticLabSystemDbEntities db = new OnlineDiagnosticLabSystemDbEntities();
 
-        // GET: UserTypeTables
+        // GET: UserTables
         public ActionResult Index()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-            return View(db.UserTypeTables.ToList());
+            var userTables = db.UserTables.Include(u => u.UserTypeTable);
+            return View(userTables.ToList());
         }
 
-        public ActionResult StartTemplate()
-        {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            return View(db.UserTypeTables.ToList());
-        }
-
-        // GET: UserTypeTables/Details/5
+        // GET: UserTables/Details/5
         public ActionResult Details(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
@@ -44,26 +36,31 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserTypeTable userTypeTable = db.UserTypeTables.Find(id);
-            if (userTypeTable == null)
+            UserTable userTable = db.UserTables.Find(id);
+            if (userTable == null)
             {
                 return HttpNotFound();
             }
-            return View(userTypeTable);
+            return View(userTable);
         }
 
-        // GET: UserTypeTables/Create
+        // GET: UserTables/Create
         public ActionResult Create()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables, "UserTypeID", "UserType");
             return View();
         }
 
-        // POST: UserTypeTables/Create
+        // POST: UserTables/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserTypeID,UserType")] UserTypeTable userTypeTable)
+        public ActionResult Create([Bind(Include = "UserID,UserTypeID,UserName,Password,Email,ContactNo,Description,isVerified")] UserTable userTable)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
@@ -71,15 +68,16 @@ namespace OnlineDiagnosticSystem.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.UserTypeTables.Add(userTypeTable);
+                db.UserTables.Add(userTable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(userTypeTable);
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables, "UserTypeID", "UserType", userTable.UserTypeID);
+            return View(userTable);
         }
 
-        // GET: UserTypeTables/Edit/5
+        // GET: UserTables/Edit/5
         public ActionResult Edit(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
@@ -90,20 +88,21 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserTypeTable userTypeTable = db.UserTypeTables.Find(id);
-            if (userTypeTable == null)
+            UserTable userTable = db.UserTables.Find(id);
+            if (userTable == null)
             {
                 return HttpNotFound();
             }
-            return View(userTypeTable);
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables, "UserTypeID", "UserType", userTable.UserTypeID);
+            return View(userTable);
         }
 
-        // POST: UserTypeTables/Edit/5
+        // POST: UserTables/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserTypeID,UserType")] UserTypeTable userTypeTable)
+        public ActionResult Edit([Bind(Include = "UserID,UserTypeID,UserName,Password,Email,ContactNo,Description,isVerified")] UserTable userTable)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
@@ -111,14 +110,15 @@ namespace OnlineDiagnosticSystem.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Entry(userTypeTable).State = EntityState.Modified;
+                db.Entry(userTable).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(userTypeTable);
+            ViewBag.UserTypeID = new SelectList(db.UserTypeTables, "UserTypeID", "UserType", userTable.UserTypeID);
+            return View(userTable);
         }
 
-        // GET: UserTypeTables/Delete/5
+        // GET: UserTables/Delete/5
         public ActionResult Delete(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
@@ -129,15 +129,15 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            UserTypeTable userTypeTable = db.UserTypeTables.Find(id);
-            if (userTypeTable == null)
+            UserTable userTable = db.UserTables.Find(id);
+            if (userTable == null)
             {
                 return HttpNotFound();
             }
-            return View(userTypeTable);
+            return View(userTable);
         }
 
-        // POST: UserTypeTables/Delete/5
+        // POST: UserTables/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -146,8 +146,8 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            UserTypeTable userTypeTable = db.UserTypeTables.Find(id);
-            db.UserTypeTables.Remove(userTypeTable);
+            UserTable userTable = db.UserTables.Find(id);
+            db.UserTables.Remove(userTable);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

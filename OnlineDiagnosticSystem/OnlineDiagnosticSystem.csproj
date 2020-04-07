@@ -129,6 +129,9 @@
     <Compile Include="Controllers\AccountTypeTablesController.cs" />
     <Compile Include="Controllers\GenderTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabAppointmentController.cs" />
+    <Compile Include="Controllers\LabSettingController.cs" />
+    <Compile Include="Controllers\UserTablesController.cs" />
     <Compile Include="Controllers\UserTypeTablesController.cs" />
     <Compile Include="FileHelpers.cs" />
     <Compile Include="Global.asax.cs">
@@ -579,6 +582,15 @@
     <Content Include="Views\Home\AddLab.cshtml" />
     <Content Include="Views\Home\AddPatient.cshtml" />
     <Content Include="Views\Home\UnderReview.cshtml" />
+    <Content Include="Views\UserTables\Create.cshtml" />
+    <Content Include="Views\UserTables\Delete.cshtml" />
+    <Content Include="Views\UserTables\Details.cshtml" />
+    <Content Include="Views\UserTables\Edit.cshtml" />
+    <Content Include="Views\UserTables\Index.cshtml" />
+    <Content Include="Views\LabSetting\LabAllTest.cshtml" />
+    <Content Include="Views\LabSetting\AddTest.cshtml" />
+    <Content Include="Views\LabSetting\TestDetails.cshtml" />
+    <Content Include="Views\LabSetting\AddTestDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -586,6 +598,7 @@
     <Folder Include="Content\LabImages\" />
     <Folder Include="Content\PatientImages\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\LabAppointment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

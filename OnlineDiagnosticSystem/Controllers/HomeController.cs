@@ -47,6 +47,27 @@ namespace OnlineDiagnosticSystem.Controllers
                 Session["ContactNo"] = user.ContactNo;
                 Session["Description"] = user.Description;
                 Session["isVerified"] = user.isVerified;
+
+
+                if (user.UserTypeID == 2) //doctor
+                {
+                    var doc = db.DoctorTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    Session["Doctor"] = doc;
+
+                }
+                else if (user.UserTypeID == 3) // lab
+                {
+                    var lab = db.LabTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    Session["Lab"] = lab;
+                }
+                else if (user.UserTypeID == 4) // patient
+                {
+                    var pat = db.PatientTables.Where(u => u.UserID == user.UserID).FirstOrDefault();
+                    Session["Patient"] = pat;
+                }
+
+
+
                 return View("Index");
 
             }
@@ -420,6 +441,12 @@ namespace OnlineDiagnosticSystem.Controllers
         {
 
             return View();
+        }
+
+        public ActionResult LogoutUser()
+        {
+            Logout();
+            return RedirectToAction("Index");
         }
         public ActionResult About()
         {

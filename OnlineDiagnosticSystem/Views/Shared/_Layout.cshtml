@@ -17,7 +17,7 @@
 
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700"
           rel="stylesheet" />
-  
+
     <!-- Syntax Highlighter -->
     <link rel="stylesheet" type="text/css" href="~/Content/DashboardTemplate/syntax-highlighter/styles/shCore.css" media="all" />
     <link rel="stylesheet" type="text/css" href="~/Content/DashboardTemplate/syntax-highlighter/styles/shThemeDefault.css" media="all" />
@@ -28,6 +28,15 @@
     <link rel="stylesheet" href="~/Content/DashboardTemplate/css/normalize.min.css" />
     <!-- Main CSS-->
     <link rel="stylesheet" href="~/Content/DashboardTemplate/css/main.css" />
+    <link rel="stylesheet" href="~/Content/FrontTemplate/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/css/themify-icons.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/css/flaticon.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/Content/FrontTemplate/css/style.css">
+    <link rel="stylesheet" href="~/Content/FrontTemplate/css/responsive.css">
 </head>
 
 <body id="welcome">
@@ -40,15 +49,58 @@
         <nav class="left-nav" id="topFixedNavbar1">
             <ul id="nav navbar-nav">
                 <li class="current"><a href="#welcome">Welcome</a></li>
-                <li>@Html.ActionLink("Account Type", "Index", "AccountTypeTables", null, null)</li>
+
                 <li>@Html.ActionLink("Change Password", "ChangePassword", "Home", null, null)</li>
-                <li><a href="#tmpl-structure">Structure</a></li>
-                <li><a href="#css-structure">CSS Files</a></li>
-                <li><a href="#javascript">JavaScript Libraries</a></li>
-                <li><a href="#contact-form">Contact Form</a></li>
-                <li><a href="#subscription-form">Subscription Form</a></li>
-                <li><a href="#video">Video Tutorial</a></li>
-                <li><a href="#credit">Source and Credit</a></li>
+                @{
+                    if (Session["UserTypeID"] != null)
+                    {
+                        var usertype = Convert.ToString(Session["UserTypeID"]);
+                        int value = Convert.ToInt32(usertype.Trim());
+                        if (value == 1)
+                        {
+                            <li>@Html.ActionLink("Account Type", "Index", "AccountTypeTables", null, null)</li>
+                            <li>@Html.ActionLink("All Users", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("Pending lab requests", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("Pending doctor requests", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All doctors", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All labs", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All Patients", "Index", "UserTables", null, null)</li>
+                        }
+                        else if (value == 3)
+                        {
+                            <li>@Html.ActionLink("All Test", "LabAllTest", "LabSetting", null, null)</li>
+                            <li>@Html.ActionLink("Add Test", "AddTest", "LabSetting", null, null)</li>
+                            <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Pending Appointment", "PendingAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Cancel appoinment", "Cancelappoinment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("All Appointment", "AllAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "LabAppointment", null, null)</li>
+                        }
+                        else if (value == 2)
+                        {
+
+                            <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Pending Appointment", "PendingAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Cancel appoinment", "Cancelappoinment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("All Appointment", "AllAppointment", "LabAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "LabAppointment", null, null)</li>
+                        }
+                        else if (value == 4)
+                        {
+
+                            <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Pending Appointment", "PendingAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Cancel appoinment", "Cancelappoinment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("All Appointment", "AllAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "PatientAppointment", null, null)</li>
+                        }
+
+                    }
+                }
+                <li>@Html.ActionLink("Logout", "LogoutUser", "Home", null, null)</li>
             </ul>
         </nav>
     </aside>
@@ -76,8 +128,20 @@
     <script type="text/javascript" src="~/Content/DashboardTemplate/syntax-highlighter/scripts/shBrushJScript.js"></script>
     <script type="text/javascript" src="~/Content/DashboardTemplate/syntax-highlighter/scripts/shBrushPhp.js"></script>
     <script type="text/javascript">
-        SyntaxHighlighter.all();
-    </script>
+    SyntaxHighlighter.all();
+   // <script src="~/Content/FrontTemplate/js/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/popper.js"></script>
+    <script src="~/Content/FrontTemplate/js/bootstrap.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/stellar.js"></script>
+    <script src="~/Content/FrontTemplate/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/waypoints.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/mail-script.js"></script>
+    <script src="~/Content/FrontTemplate/js/contact.js"></script>
+    <script src="~/Content/FrontTemplate/js/jquery.form.js"></script>
+    <script src="~/Content/FrontTemplate/js/jquery.validate.min.js"></script>
+    <script src="~/Content/FrontTemplate/js/mail-script.js"></script>
+    <script src="~/Content/FrontTemplate/js/theme.js"></script>
     <script type="text/javascript" src="~/Content/DashboardTemplate/js/custom.js"></script>
 </body>
 </html>
