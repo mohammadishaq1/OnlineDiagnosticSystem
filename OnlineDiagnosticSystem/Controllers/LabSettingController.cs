@@ -72,13 +72,18 @@ namespace OnlineDiagnosticSystem.Controllers
         }
         public ActionResult AddTestDetails()
         {
-          
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult AddTestDetails(LabTestDetailsTable testDetails)
         {
+
 
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
@@ -118,23 +123,86 @@ namespace OnlineDiagnosticSystem.Controllers
 
 
 
-        public ActionResult EditTest()
+        public ActionResult EditTest(int? id)
         {
-            return View();
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var labtest = db.LabTestTables.Find(id);
+            return View(labtest);
         }
         [HttpPost]
         public ActionResult EditTest(LabTestTable test)
         {
-            return View();
+
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (Session["Lab"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+        
+            if (ModelState.IsValid)
+            {
+                var findlab = db.LabTestTables.Where(i => i.Name == test.Name && i.LabTestID !=test.LabTestID ).FirstOrDefault();
+                if (findlab == null)
+                {
+                    db.Entry(test).State= System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("LabAllTest");
+                }
+                else
+                {
+                    ViewBag.Message = "Already Registered";
+                }
+            }
+
+            return View(test);
+          
         }
-        public ActionResult EditTestDetails()
+        public ActionResult EditTestDetails(int? id)
         {
-            return View();
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var details = db.LabTestDetailsTables.Find(id);
+            return View(details);
         }
         [HttpPost]
-        public ActionResult EditTestDetails(LabTestDetailsTable tstDetails)
+        public ActionResult EditTestDetails(LabTestDetailsTable testDetails)
         {
-            return View();
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            if (Session["Lab"] == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+          
+            if (ModelState.IsValid)
+            {
+                var findDetails = db.LabTestDetailsTables.Where(i => i.Name == testDetails.Name && i.LabTestDetailID != testDetails.LabTestDetailID ).FirstOrDefault();
+                if (findDetails == null)
+                {
+                    db.Entry(testDetails).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("TestDetails", new { id = testDetails.LabTestID });
+                }
+                else
+                {
+                    ViewBag.Message = "Already Registered";
+                }
+            }
+
+            return View(testDetails);
+       
         }
     }
 }

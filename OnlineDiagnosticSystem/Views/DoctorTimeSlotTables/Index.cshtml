@@ -1,13 +1,13 @@
-﻿@model IEnumerable<DatabaseLayer.LabTestDetailsTable>
+﻿@model IEnumerable<DatabaseLayer.DoctorTimeSlotTable>
 
 @{
-    ViewBag.Title = "Test Details";
+    ViewBag.Title = "Index";
 }
 
 
 
 <div class="card-header py-3">
-    @Html.ActionLink("Add Detials", "AddTestDetails", "LabSetting", new { @class = "genric-btn success" })
+    @Html.ActionLink("New Time Slot", "Create", "DoctorTimeSlotTables", new { @class = "genric-btn success" })
     <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2" style="float:right" placeholder="Search" />
 </div>
 <div class="card-body">
@@ -16,51 +16,50 @@
             <thead>
                 <tr>
                     <th>
-                        Test Title
+                        Time slot Title
                     </th>
                     <th>
-                        Details
+                        From Time
                     </th>
                     <th>
-                        Min Value
-                    </th>
-                    <th>
-                        Max Value
+                        To Time
                     </th>
 
+                    <th>
+                        Status
+                    </th>
 
-                    <th>Actions</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="searchvalue">
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.LabTestTable.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MinValue)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaxValue)
-                        </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FromTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ToTime)
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsActive)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.DoctorTimeSlotID }, new { @class = "genric-btn primary" })
 
-                        <td>
-                            @Html.ActionLink("Edit", "EditTestDetails", new { id = item.LabTestDetailID }, new { @class = "genric-btn primary" })
-
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
+
             </tbody>
         </table>
     </div>
 </div>
-
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

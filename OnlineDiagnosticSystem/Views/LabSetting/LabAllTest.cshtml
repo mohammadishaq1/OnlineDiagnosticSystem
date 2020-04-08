@@ -7,7 +7,7 @@
 <h2>LabAllTest</h2>
 
 <div class="card-header py-3">
-    @Html.ActionLink("New Test", "Create", "LabSetting", new { @class = "genric-btn success" })
+    @Html.ActionLink("New Test", "AddTest", "LabSetting", new { @class = "genric-btn success" })
     <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2" style="float:right" placeholder="Search" />
 </div>
 <div class="card-body">
@@ -41,7 +41,7 @@
                             @Html.DisplayFor(modelItem => item.LabTable.Name)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.LabTestID }) |
+                            @Html.ActionLink("Edit", "EditTest", new { id = item.LabTestID }) |
                             @Html.ActionLink("Details","TestDetails", new { id = item.LabTestID }) |
 
                         </td>
