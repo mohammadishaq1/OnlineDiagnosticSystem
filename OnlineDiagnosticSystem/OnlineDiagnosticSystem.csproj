@@ -127,8 +127,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountTypeTablesController.cs" />
+    <Compile Include="Controllers\DoctorAppointmentStatusController.cs" />
     <Compile Include="Controllers\DoctorTimeSlotTablesController.cs" />
-    <Compile Include="Controllers\GenderTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LabAppointmentController.cs" />
     <Compile Include="Controllers\LabSettingController.cs" />
@@ -574,11 +574,6 @@
     <Content Include="Views\AccountTypeTables\Details.cshtml" />
     <Content Include="Views\AccountTypeTables\Edit.cshtml" />
     <Content Include="Views\AccountTypeTables\Index.cshtml" />
-    <Content Include="Views\GenderTables\Create.cshtml" />
-    <Content Include="Views\GenderTables\Delete.cshtml" />
-    <Content Include="Views\GenderTables\Details.cshtml" />
-    <Content Include="Views\GenderTables\Edit.cshtml" />
-    <Content Include="Views\GenderTables\Index.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\AddDoctor.cshtml" />
@@ -611,6 +606,9 @@
     <Content Include="Views\PatientAppoint\DocAppointment.cshtml" />
     <Content Include="Views\PatientAppoint\DoctorProfile.cshtml" />
     <Content Include="Views\PatientAppoint\DoctorPendingAppoint.cshtml" />
+    <Content Include="Views\DoctorAppointmentStatus\PendingAppoint.cshtml" />
+    <Content Include="Views\DoctorAppointmentStatus\CurrentAppoint.cshtml" />
+    <Content Include="Views\DoctorAppointmentStatus\CompleteAppoint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
