@@ -88,11 +88,13 @@
                             <li>@Html.ActionLink("All Appointment", "AllAppointment", "LabAppointment", null, null)</li>
                             <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "LabAppointment", null, null)</li>
                         }
-                        else if (value == 4)
+                        else if (value == 4)   //patient
                         {
+                            <li>@Html.ActionLink("All Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("All Labs", "GetAllLabs", "PatientAppoint", null, null)</li>
 
                             <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "PatientAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Pending Appointment", "PendingAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("Pending Appointment", "DoctorPendingAppoint", "PatientAppoint", null, null)</li>
                             <li>@Html.ActionLink("Cancel appoinment", "Cancelappoinment", "PatientAppointment", null, null)</li>
                             <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "PatientAppointment", null, null)</li>
                             <li>@Html.ActionLink("All Appointment", "AllAppointment", "PatientAppointment", null, null)</li>

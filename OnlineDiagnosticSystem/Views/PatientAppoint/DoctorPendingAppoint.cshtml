@@ -1,0 +1,69 @@
+﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
+
+@{
+    ViewBag.Title = "DoctorPendingAppoint";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsFeeSubmit)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionNo)
+        </th>
+        <th>
+            https://www.youtube.com/watch?v=dXSyxSJt7fk&list=PLAAtmHo4b1SlJUvC6pcnvjMhVdFMBViNY&index=34@Html.DisplayNameFor(model => model.DoctorComment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorTimeSlotTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientTable.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AppointDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsFeeSubmit)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoctorComment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoctorTable.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PatientTable.Name)
+        </td>
+   
+    </tr>
+}
+
+</table>

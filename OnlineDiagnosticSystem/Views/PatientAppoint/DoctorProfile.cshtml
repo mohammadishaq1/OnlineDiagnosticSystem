@@ -1,0 +1,119 @@
+﻿@model DatabaseLayer.DoctorTable
+
+@{
+    ViewBag.Title = "DoctorProfile";
+}
+
+<h2>DoctorProfile</h2>
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fees)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fees)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Splztion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Splztion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClinicAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClinicAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PermanentAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PermanentAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClinicPhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClinicPhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerDayMaxAppitmnt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerDayMaxAppitmnt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenderTable.Name)
+        </dt>
+
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
