@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DatabaseLayer.LabAppointTable>
+
+@{
+    ViewBag.Title = "cancel Appoint";
+}
+
+<h2>cancel Appoint</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointDate)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabTestTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabTimeSlotTable.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientTable.Name)
+        </th>
+        <th>status</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTable.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTestTable.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTimeSlotTable.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientTable.Name)
+            </td>
+            <td>
+
+                <h2>cancel</h2>
+
+            </td>
+         
+        </tr>
+    }
+
+</table>

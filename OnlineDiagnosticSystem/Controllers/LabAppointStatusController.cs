@@ -1,13 +1,13 @@
-﻿using DatabaseLayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DatabaseLayer;
 
 namespace OnlineDiagnosticSystem.Controllers
 {
-    public class DoctorAppointmentStatusController : Controller
+    public class LabAppointStatusController : Controller
     {
         private OnlineDiagnosticLabSystemDbEntities db = new OnlineDiagnosticLabSystemDbEntities();
         // GET: DoctorAppointmentStatus
@@ -17,9 +17,9 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-           
+
             var patient = (PatientTable)Session["Patient"];
-            var pendingappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == false && d.DoctorComment.Trim().Length == 0);
+            var pendingappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsComplete == false && d.IsFeeSubmit == false);
             return View(pendingappointment);
         }
 
@@ -32,7 +32,7 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var currentappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length == 0);
+            var currentappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsComplete == false && d.IsFeeSubmit == true);
             return View(currentappointment);
         }
 
@@ -44,7 +44,7 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var completeappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == true && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length > 0);
+            var completeappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsComplete == true && d.IsFeeSubmit == true);
             return View(completeappointment);
         }
 
@@ -56,8 +56,8 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var cancelappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.DoctorComment.Trim().Length > 0);
-            return View(cancelappointment);
+            var canceleappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && (d.IsComplete == false || d.IsFeeSubmit == false )&& d.AppointDate< DateTime.Now);
+            return View(canceleappointment);
         }
 
 
@@ -69,10 +69,8 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var allappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID);
+            var allappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID);
             return View(allappointment);
         }
-
-
     }
 }
