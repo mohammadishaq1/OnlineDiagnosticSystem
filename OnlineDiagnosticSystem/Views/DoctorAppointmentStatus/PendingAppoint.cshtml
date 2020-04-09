@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorTable.Name)
+            Doctor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DoctorTimeSlotTable.Name)
+            Time slot
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PatientTable.Name)
+            Patient
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AppointDate)
@@ -57,12 +57,9 @@
 
 
     <td>
-        @{ 
-            if(item.IsChecked ==false && item.IsFeeSubmit == false)
-            {
+       
                 <h2>Pending</h2>
-            }
-        }
+      
     </td>
 </tr>
 }

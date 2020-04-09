@@ -1,22 +1,22 @@
 ﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "complete appointment";
+    ViewBag.Title = "cancel appointment";
 }
 
-<h2>Complete appointment</h2>
+<h2>Cancel/incomplete appointment</h2>
 
 
 <table class="table">
     <tr>
         <th>
-            Doctor
+            @Html.DisplayNameFor(model => model.DoctorTable.Name)
         </th>
         <th>
-            Time slot
+            @Html.DisplayNameFor(model => model.DoctorTimeSlotTable.Name)
         </th>
         <th>
-            Patient
+            @Html.DisplayNameFor(model => model.PatientTable.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AppointDate)
@@ -36,15 +36,15 @@
     @foreach (var item in Model)
     {
 <tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.DoctorTable.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.PatientTable.Name)
-    </td>
+    <th>
+        Doctor
+    </th>
+    <th>
+        Time slot
+    </th>
+    <th>
+        Patient
+    </th>
     <td>
         @Html.DisplayFor(modelItem => item.AppointDate)
 
@@ -62,9 +62,16 @@
     </td>
 
     <td>
-       
-                <h2>completed</h2>
-         
+        @{
+            if (item.IsChecked == false && item.IsFeeSubmit == false)
+            {
+                <h2>Reject</h2>
+            }
+            else if (item.IsChecked == false && item.IsFeeSubmit == true)
+            {
+                <h2>cancel</h2>
+            }
+        }
     </td>
 </tr>
     }

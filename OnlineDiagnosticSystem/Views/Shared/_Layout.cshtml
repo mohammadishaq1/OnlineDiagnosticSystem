@@ -90,15 +90,24 @@
                         }
                         else if (value == 4)   //patient
                         {
-                            <li>@Html.ActionLink("All Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
-                            <li>@Html.ActionLink("All Labs", "GetAllLabs", "PatientAppoint", null, null)</li>
 
-                            <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "PatientAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Pending Appointment", "DoctorPendingAppoint", "PatientAppoint", null, null)</li>
-                            <li>@Html.ActionLink("Cancel appoinment", "Cancelappoinment", "PatientAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "PatientAppointment", null, null)</li>
-                            <li>@Html.ActionLink("All Appointment", "AllAppointment", "PatientAppointment", null, null)</li>
-                            <li>@Html.ActionLink("Appointment Report", "AppointmentReport", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("All Labs", "GetAllLabs", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("All Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
+
+                            <li>@Html.ActionLink("(LAB) Current Appointment", "CurrentAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("(LAB) Pending Appointment", "DoctorPendingAppoint", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("(LAB) Cancel appoinment", "Cancelappoinment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("(LAB) Complete Appointment", "CompleteAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("(LAB) All Appointment", "AllAppointment", "PatientAppointment", null, null)</li>
+                            <li>@Html.ActionLink("(LAB) Appointment Report", "AppointmentReport", "PatientAppointment", null, null)</li>
+
+
+                            <li>@Html.ActionLink("(Doctor) Current Appointment", "CurrentAppoint", "DoctorAppointmentStatus", null, null)</li>
+                            <li>@Html.ActionLink("(Doctor)Pending Appointment", "PendingAppoint", "DoctorAppointmentStatus", null, null)</li>
+                            <li>@Html.ActionLink("(Doctor)Cancel appoinment", "CancelAppoint", "DoctorAppointmentStatus", null, null)</li>
+                            <li>@Html.ActionLink("(Doctor)Complete Appointment", "CompleteAppoint", "DoctorAppointmentStatus", null, null)</li>
+                            <li>@Html.ActionLink("(Doctor)All Appointment", "AllAppoint", "DoctorAppointmentStatus", null, null)</li>
+                            <li>@Html.ActionLink("(Doctor)Appointment Report", "AppointmentReport", "DoctorAppointmentStatus", null, null)</li>
                         }
 
                     }

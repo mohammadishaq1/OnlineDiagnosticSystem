@@ -91,16 +91,77 @@ namespace OnlineDiagnosticSystem.Controllers
             return View(doc);
         }
 
-        public ActionResult DoctorPendingAppoint(int? id)
+        public ActionResult LabTests(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-            var userid = Convert.ToInt32(Convert.ToString(Session["UserID"]));
-            var patientid = db.PatientTables.Where(p => p.UserID == userid).FirstOrDefault().PatientID;
-            var appointmentlist = db.DoctorAppointTables.Where(p => p.PatientID == patientid && p.IsFeeSubmit == false && p.IsChecked == false);
-            return View(appointmentlist);
+            Session["labid"] = id;
+            var laballtest = db.LabTestTables.Where(d => d.LabID == id);
+
+
+            return View(laballtest);
+        }
+        public ActionResult LabAppointment(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int labid = db.LabTestTables.Find(id).LabID;
+
+            var patient = (PatientTable)Session["Patient"];
+            var appointment = new LabAppointTable()
+            {
+                LabID = labid,
+                LabTestID = (int)id,
+                PatientID=patient.PatientID
+            };
+
+
+            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == id && d.IsActive == true), "LabTimeSlotID", "Name", "0");
+           
+            return View(appointment);
+        }
+
+
+        [HttpPost]
+        public ActionResult LabAppointment(LabAppointTable appointment)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+           
+            appointment.IsComplete = false;
+            appointment.IsFeeSubmit = false;
+            
+            if (ModelState.IsValid)
+            {
+                var checktransectionno = db.LabAppointTables.Where(c => c.TransactionNo == appointment.TransactionNo).FirstOrDefault();
+                if (checktransectionno == null)
+                {
+                    var find = db.LabAppointTables.Where(p => p.LabTimeSlotID == appointment.LabTimeSlotID && p.LabID == appointment.LabID && p.AppointDate == appointment.AppointDate).FirstOrDefault();
+                    if (find == null)
+                    {
+                        db.LabAppointTables.Add(appointment);
+                        db.SaveChanges();
+                        ViewBag.Message = "Appointment subbmitted";
+                    }
+                    else
+                    {
+                        ViewBag.Message = "This time slot is already assigned";
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "Transaction no is already used";
+                }
+            }
+            ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == appointment.LabID && d.IsActive == true), "LabTimeSlotID", "Name", "0");
+            return View(appointment);
         }
     }
 }

@@ -1,24 +1,22 @@
 ﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "Current appointment";
+    ViewBag.Title = "All appointment";
 }
 
-<h2>Current appointment</h2>
+<h2>All appointment</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
             Doctor
         </th>
         <th>
-            Time slot
+           Time slot
         </th>
         <th>
-            Patient
+           Patient
         </th>
         <th>
             @Html.DisplayNameFor(model => model.AppointDate)
@@ -28,6 +26,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorComment)
         </th>
         <th>Status</th>
     </tr>
@@ -51,16 +52,36 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TransactionNo)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
 
-
+            <td>
+                @Html.DisplayFor(modelItem => item.DoctorComment)
+            </td>
 
             <td>
-              
-                        <h2>Accepted</h2>
-                
+
+                @{
+                    if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                    {
+                        <h2>Complete </h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                    {
+                        <h2>cancel</h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
+                    {
+                        <h2>pending</h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length > 0)
+                    {
+                        <h2>pending</h2>
+                    }
+                }
+
             </td>
         </tr>
     }

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<DatabaseLayer.LabTestTable>
+
+@{
+    ViewBag.Title = "LabTests";
+}
+
+<h2>Select your test</h2>
+
+<table class="table">
+    <tr>
+        <th>
+           Test Name
+        </th>
+        <th>
+           Cost
+        </th>
+       
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+      
+        <td>
+            @Html.ActionLink("select", "LabAppointment", new { id=item.LabTestID }, new { @class="genric-btn success"})
+          
+        </td>
+    </tr>
+}
+
+</table>

@@ -609,6 +609,10 @@
     <Content Include="Views\DoctorAppointmentStatus\PendingAppoint.cshtml" />
     <Content Include="Views\DoctorAppointmentStatus\CurrentAppoint.cshtml" />
     <Content Include="Views\DoctorAppointmentStatus\CompleteAppoint.cshtml" />
+    <Content Include="Views\DoctorAppointmentStatus\CancelAppoint.cshtml" />
+    <Content Include="Views\DoctorAppointmentStatus\AllAppoint.cshtml" />
+    <Content Include="Views\PatientAppoint\LabAppointment.cshtml" />
+    <Content Include="Views\PatientAppoint\LabTests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

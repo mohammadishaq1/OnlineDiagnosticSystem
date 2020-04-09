@@ -47,5 +47,32 @@ namespace OnlineDiagnosticSystem.Controllers
             var completeappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == true && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length > 0);
             return View(completeappointment);
         }
+
+        public ActionResult CancelAppoint()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var patient = (PatientTable)Session["Patient"];
+            var cancelappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.DoctorComment.Trim().Length > 0);
+            return View(cancelappointment);
+        }
+
+
+        public ActionResult AllAppoint()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            var patient = (PatientTable)Session["Patient"];
+            var cancelappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID);
+            return View(cancelappointment);
+        }
+
+
     }
 }
