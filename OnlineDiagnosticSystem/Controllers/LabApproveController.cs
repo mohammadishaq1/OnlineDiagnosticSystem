@@ -1,4 +1,5 @@
 ﻿using DatabaseLayer;
+using OnlineDiagnosticSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,34 @@ namespace OnlineDiagnosticSystem.Controllers
             }
             ViewBag.LabTimeSlotID = new SelectList(db.LabTimeSlotTables.Where(d => d.LabID == app.LabID), "LabTimeSlotID", "LabTimeSlotID", app.LabTimeSlotID);
             return View(app);
+        }
+
+        public ActionResult ProcessAppointment(int? id)
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            List<PatientAppointmentMV> detaillist = new List<PatientAppointmentMV>();
+            var appoint = db.LabAppointTables.Find(id);
+            var testdetails = db.LabTestDetailsTables.Where(p => p.LabTestID == appoint.LabTestID);
+            foreach (var item in testdetails)
+            {
+                var details = new PatientAppointmentMV()
+                {
+                    DetailName = item.Name,
+                    LabAppointID = appoint.LabAppointID,
+                    LabTestDetailID = item.LabTestDetailID,
+                    MaxValue = item.MaxValue,
+                    MinValue=item.MinValue,
+                    PatientValue = 0
+                };
+                detaillist.Add(details);
+            }
+            ViewBag.TestName = appoint.LabTestTable.Name;
+
+            return View(detaillist);
+            
         }
     }
 }

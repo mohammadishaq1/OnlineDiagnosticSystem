@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OnlineDiagnosticSystem.Models.PatientAppointmentMV>
+
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Enter report: @ViewBag.TestName</h2>
+
+
+<table class="table">
+    <tr>
+        <th style="display:none;">
+            LabAppointID
+        </th>
+        <th style="display:none;">
+            LabTestDetailID
+        </th>
+        <th>
+            Report detail
+        </th>
+        <th>
+            MinValue
+        </th>
+        <th>
+            MaxValue
+        </th>
+        <th>
+            PatientValue
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td style="display:none;">
+        @Html.DisplayFor(modelItem => item.LabAppointID)
+    </td>
+    <td style="display:none;">
+        @Html.DisplayFor(modelItem => item.LabTestDetailID)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.DetailName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MinValue)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.MaxValue)
+    </td>
+
+    <td>
+        @Html.EditorFor(modelItem => item.PatientValue)
+
+    </td>
+</tr>
+    }
+
+</table>
+

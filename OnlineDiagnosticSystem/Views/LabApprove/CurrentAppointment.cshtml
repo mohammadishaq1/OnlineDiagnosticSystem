@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DatabaseLayer.LabAppointTable>
 
 @{
-    ViewBag.Title = "Pending Appoint";
+    ViewBag.Title = "Current Appoint";
 }
 
-<h2>Pending Appoint</h2>
+<h2>Current Appoint</h2>
 
 
 <table class="table">
@@ -62,7 +62,7 @@
 
             </td>
             <td>
-                @Html.ActionLink("Change status", "ProcessApointment", new { id = item.LabAppointID }, new { @class = "genric-btn primary" })
+                @Html.ActionLink("Change status", "ProcessAppointment", new { id = item.LabAppointID }, new { @class = "genric-btn primary" })
 
             </td>
         </tr>
