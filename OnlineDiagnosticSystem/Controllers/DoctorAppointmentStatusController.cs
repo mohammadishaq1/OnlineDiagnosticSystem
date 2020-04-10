@@ -19,7 +19,7 @@ namespace OnlineDiagnosticSystem.Controllers
             }
            
             var patient = (PatientTable)Session["Patient"];
-            var pendingappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == false && d.DoctorComment.Trim().Length == 0);
+            var pendingappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == false && string.IsNullOrEmpty(d.DoctorComment) == true);
             return View(pendingappointment);
         }
 
@@ -32,9 +32,21 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var currentappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length == 0);
+            var currentappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == true && string.IsNullOrEmpty(d.DoctorComment) == true);
             return View(currentappointment);
         }
+
+        //public ActionResult CurrentAppointment()
+        //{
+        //    if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+        //    {
+        //        return RedirectToAction("Login", "Home");
+        //    }
+
+        //    var patient = (PatientTable)Session["Patient"];
+        //    var pendingappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == false && string.IsNullOrEmpty(d.DoctorComment) == true);
+        //    return View(pendingappointment);
+        //}
 
         public ActionResult CompleteAppoint()
         {
@@ -44,7 +56,7 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var completeappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == true && d.IsFeeSubmit == true && d.DoctorComment.Trim().Length > 0);
+            var completeappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == true && d.IsFeeSubmit == true && string.IsNullOrEmpty(d.DoctorComment) != true);
             return View(completeappointment);
         }
 

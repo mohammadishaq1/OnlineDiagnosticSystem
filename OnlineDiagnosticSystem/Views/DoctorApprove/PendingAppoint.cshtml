@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
+
+@{
+    ViewBag.Title = "Pending Appoint";
+}
+
+<h2>Pending Appoint</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Doctor
+        </th>
+        <th>
+            Time slot
+        </th>
+        <th>
+            Patient
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AppointDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionNo)
+        </th>
+        <th>
+            Reason
+        </th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorTable.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PatientTable.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppointDate)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+
+
+
+    <td>
+
+        <h2>Pending</h2>
+
+    </td>
+    <td>
+        @Html.ActionLink("Change status", "ChangeStatus", new { id = item.DoctorAppointID }, new { @class = "genric-btn primary" })
+
+    </td>
+</tr>
+    }
+
+</table>

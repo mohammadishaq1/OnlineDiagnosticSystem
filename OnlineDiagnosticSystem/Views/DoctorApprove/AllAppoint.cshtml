@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "PendingAppoint";
+    ViewBag.Title = "All Appointment";
 }
 
-<h2>PendingAppoint</h2>
+<h2>Current Appointment</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -27,9 +27,10 @@
             @Html.DisplayNameFor(model => model.TransactionNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Reason
         </th>
         <th>Status</th>
+        <th>Action</th>
     </tr>
 
     @foreach (var item in Model)
@@ -59,9 +60,27 @@
 
             <td>
 
-                <h2>pending</h2>
+                @{
+                    if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                    {
+                        <h2>Complete </h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+                    {
+                        <h2>cancel</h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
+                    {
+                        <h2>pending</h2>
+                    }
+                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length > 0)
+                    {
+                        <h2>pending</h2>
+                    }
+                }
 
             </td>
+          
         </tr>
     }
 

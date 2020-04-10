@@ -66,7 +66,7 @@ namespace OnlineDiagnosticSystem.Controllers
                     {
                         db.DoctorAppointTables.Add(appointment);
                         db.SaveChanges();
-                        return RedirectToAction("DoctorPendingAppoint");
+                        return RedirectToAction("GetAllLabs");
                     }
                     else
                     {

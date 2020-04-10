@@ -56,7 +56,7 @@ namespace OnlineDiagnosticSystem.Controllers
             }
 
             var patient = (PatientTable)Session["Patient"];
-            var canceleappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && (d.IsComplete == false || d.IsFeeSubmit == false )&& d.AppointDate< DateTime.Now);
+            var canceleappointment = db.LabAppointTables.Where(d => d.PatientID == patient.PatientID && (d.IsComplete == false || d.IsFeeSubmit == true )&& d.AppointDate< DateTime.Now);
             return View(canceleappointment);
         }
 

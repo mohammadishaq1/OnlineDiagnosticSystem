@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
 
 @{
-    ViewBag.Title = "PendingAppoint";
+    ViewBag.Title = "Current Appointment";
 }
 
-<h2>PendingAppoint</h2>
+<h2>Current Appointment</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -27,9 +27,10 @@
             @Html.DisplayNameFor(model => model.TransactionNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Reason
         </th>
         <th>Status</th>
+        <th>Action</th>
     </tr>
 
     @foreach (var item in Model)
@@ -59,7 +60,11 @@
 
             <td>
 
-                <h2>pending</h2>
+                <h2>Process</h2>
+
+            </td>
+            <td>
+                @Html.ActionLink("Process", "ProcessAppoint", new { id = item.DoctorAppointID }, new { @class = "genric-btn primary" })
 
             </td>
         </tr>
