@@ -1,18 +1,16 @@
-﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
+﻿@model IEnumerable<DatabaseLayer.LabAppointTable>
 
 @{
-    ViewBag.Title = "Appointments";
+    ViewBag.Title = "Pending Appoint";
 }
 
-<h2>complete Appointment</h2>
+<h2>Pending Appoint</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            Doctor
+            lab
         </th>
         <th>
             Time slot
@@ -30,17 +28,17 @@
             Reason
         </th>
         <th>Status</th>
-      
+        <th>Action</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DoctorTable.Name)
+                @Html.DisplayFor(modelItem => item.LabTable.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
+                @Html.DisplayFor(modelItem => item.LabTimeSlotTable.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PatientTable.Name)
@@ -60,11 +58,15 @@
 
             <td>
 
-                <h2>Complete</h2>
+                <h2>Approved</h2>
 
             </td>
-           
+            <td>
+                @Html.ActionLink("Change status", "ProcessApointment", new { id = item.LabAppointID }, new { @class = "genric-btn primary" })
+
+            </td>
         </tr>
     }
 
 </table>
+
