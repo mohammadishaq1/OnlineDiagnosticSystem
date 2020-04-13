@@ -58,10 +58,15 @@
 
             <td>
 
-                <h2 style="color:forestgreen">Approve</h2>
+                <h2 style="color:forestgreen">Complete</h2>
 
             </td>
-          
+            <td>
+
+                @Html.ActionLink("Print Report", "ViewDetails", new { id = item.LabAppointID }, new { @class = "genric-btn info" })
+               
+
+            </td>
         </tr>
     }
 

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DatabaseLayer.PatientTestDetailTable>
+
+@{
+    ViewBag.Title = "ViewDetails";
+}
+
+<h2> report result</h2>
+
+<table>
+    <tr>
+        <td><h3>Test Name: @ViewBag.TestName</h3></td>
+        <td><h3>Lab Name: @ViewBag.Lab</h3></td>
+        <td><h3>@ViewBag.TestName</h3></td>
+    </tr>
+    <tr>
+        <td>
+            <h3>Patient Name: @ViewBag.Patient</h3>
+        </td>
+        <td><h3>Appointment no: @ViewBag.AppointmentNo</h3></td>
+        <td>
+            @{ if (!string.IsNullOrEmpty(ViewBag.PatientPhoto))
+                {
+                    <img src="@Url.Content(ViewBag.PatientPhoto)" alt="Image" style="width:50px; height:50px; max-width:100%; height:auto" />
+                }
+
+                }
+            </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            Details
+        </th>
+        <th>
+            Min Value
+        </th>
+        <th>
+            Max Value
+        </th>
+        <th> Patient Vlaue</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTestDetailsTable.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTestDetailsTable.MinValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LabTestDetailsTable.MaxValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientValue)
+            </td>
+
+        </tr>
+    }
+
+</table>

@@ -635,6 +635,7 @@
     <Content Include="Views\LabApprove\CurrentAppointment.cshtml" />
     <Content Include="Views\LabApprove\AllAppoint.cshtml" />
     <Content Include="Views\LabApprove\ProcessAppointment.cshtml" />
+    <Content Include="Views\LabApprove\ViewDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
