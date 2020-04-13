@@ -131,7 +131,6 @@
     <Compile Include="Controllers\DoctorApproveController.cs" />
     <Compile Include="Controllers\DoctorTimeSlotTablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LabAppointmentController.cs" />
     <Compile Include="Controllers\LabAppointStatusController.cs" />
     <Compile Include="Controllers\LabApproveController.cs" />
     <Compile Include="Controllers\LabSettingController.cs" />
@@ -636,13 +635,13 @@
     <Content Include="Views\LabApprove\AllAppoint.cshtml" />
     <Content Include="Views\LabApprove\ProcessAppointment.cshtml" />
     <Content Include="Views\LabApprove\ViewDetails.cshtml" />
+    <Content Include="Views\LabSetting\GetAllTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\DoctorImages\" />
     <Folder Include="Content\LabImages\" />
     <Folder Include="Content\PatientImages\" />
-    <Folder Include="Views\LabAppointment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

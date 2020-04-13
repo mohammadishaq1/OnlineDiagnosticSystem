@@ -1,0 +1,59 @@
+﻿@model IEnumerable<DatabaseLayer.LabTestTable>
+
+@{
+    ViewBag.Title = "LabAllTest";
+}
+
+<h2>LabAllTest</h2>
+
+<div class="card-header py-3">
+    <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2" style="float:right" placeholder="Search" />
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                        Test Name
+                    </th>
+                    <th>
+                        Cost
+                    </th>
+                    <th>
+                        lab
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody id="searchvalue">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cost)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LabTable.Name)
+                        </td>
+                      
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#txtsearch").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#searchvalue tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

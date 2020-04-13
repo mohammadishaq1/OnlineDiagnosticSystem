@@ -2,10 +2,12 @@
 
 @{
     ViewBag.Title = "ViewDetails";
+      Layout = "";
+  
 }
 
 <h2> report result</h2>
-
+<button onclick="window.print()">Print this page</button>
 <table>
     <tr>
         <td><h3>Test Name: @ViewBag.TestName</h3></td>
@@ -27,11 +29,6 @@
             </td>
     </tr>
 </table>
-
-
-
-
-
 
 
 <table class="table">
