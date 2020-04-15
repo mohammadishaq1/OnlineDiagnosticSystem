@@ -10,11 +10,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
 
-
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="img/favicon.png" type="image/png">
-    <title>Lab</title>
+   
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/Content/FrontTemplate/css/bootstrap.css">
     <link rel="stylesheet" href="~/Content/FrontTemplate/css/themify-icons.css">
@@ -30,10 +30,10 @@
 
     <div class="container body-content">
         <section class="appointment-area">
-            <div class="container">
+            <div class="container ">
 
                 <div class="appointment-inner">
-                    <div class="row">
+                    <div class="row justify-content-center">
 
                         <div class="col-lg-5">
                             @using (Html.BeginForm("AddPatient", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -47,7 +47,7 @@
                            
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Name,"Full Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Name,"Full Name", htmlAttributes: new { @class = "control-label col-md-4" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.Description, "Description",htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.Description, "Reason for visit",htmlAttributes: new { @class = "control-label col-md-6" })
                                     <div class="col-md-10">
                                         @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
@@ -79,14 +79,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.LogoFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.LogoFile, "Photo",htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.TextBoxFor(model => model.LogoFile, new { type = "file" })
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    @Html.LabelFor(model => model.GenderID, "GenderID", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.LabelFor(model => model.GenderID, "Gender", htmlAttributes: new { @class = "control-label col-md-2" })
                                     <div class="col-md-10">
                                         @Html.DropDownList("GenderID", null,"Gender", htmlAttributes: new { @class = "form-control" })
                                         @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })

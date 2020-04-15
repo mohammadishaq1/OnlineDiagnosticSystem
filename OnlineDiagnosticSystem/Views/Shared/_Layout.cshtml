@@ -48,7 +48,8 @@
         </div>
         <nav class="left-nav" id="topFixedNavbar1">
             <ul id="nav navbar-nav">
-                <li class="current"><a href="#welcome">Welcome</a></li>
+
+                <li>@Html.ActionLink("Welcome", "Index", "Home", null, null)</li>
 
                 <li>@Html.ActionLink("Change Password", "ChangePassword", "Home", null, null)</li>
                 @{
@@ -60,17 +61,17 @@
                         {
                             <li>@Html.ActionLink("Account Type", "Index", "AccountTypeTables", null, null)</li>
                             <li>@Html.ActionLink("All Users", "Index", "UserTables", null, null)</li>
-                            <li>@Html.ActionLink("Pending lab requests", "Index", "UserTables", null, null)</li>
-                            <li>@Html.ActionLink("Pending doctor requests", "Index", "UserTables", null, null)</li>
-                            <li>@Html.ActionLink("All doctors", "Index", "UserTables", null, null)</li>
-                            <li>@Html.ActionLink("All labs", "Index", "UserTables", null, null)</li>
-                            <li>@Html.ActionLink("All Patients", "Index", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("Pending lab requests", "AllPendingLab", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("Pending doctor requests", "AllPendingDoctors", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All doctors", "AllDoc", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All labs", "AllLab", "UserTables", null, null)</li>
+                            <li>@Html.ActionLink("All Patients", "AllPatients", "UserTables", null, null)</li>
                         }
                         else if (value == 3)    //lab access
                         {
                             <li>@Html.ActionLink("Time Slot", "Index", "LabTimeSlotTables", null, null)</li>
                             <li>@Html.ActionLink("All Test", "LabAllTest", "LabSetting", null, null)</li>
-                            <li>@Html.ActionLink("Add Test", "AddTest", "LabSetting", null, null)</li>
+                        
                             <li>@Html.ActionLink("Current Appointment", "CurrentAppointment", "LabApprove", null, null)</li>
                             <li>@Html.ActionLink("Pending Appointment", "PendingAppoint", "LabApprove", null, null)</li>
                             <li>@Html.ActionLink("Complete Appointment", "CompleteAppointment", "LabApprove", null, null)</li>
@@ -89,30 +90,37 @@
                         else if (value == 4)   //patient
                         {
 
-                            <li>@Html.ActionLink("All Labs", "GetAllLabs", "PatientAppoint", null, null)</li>
-                            <li>@Html.ActionLink("All Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
-                            <li>@Html.ActionLink("All Tests", "GetAllTest","LabSetting", null, null)</li>
-                            <li>@Html.ActionLink("(LAB) Current Appointment", "CurrentAppoint", "LabAppointStatus", null, null)</li>
-                            <li>@Html.ActionLink("(LAB) Pending Appointment", "PendingAppoint", "LabAppointStatus", null, null)</li>
-                            <li>@Html.ActionLink("(LAB) Cancel appoinment", "CancelAppoint", "LabAppointStatus", null, null)</li>
-                            <li>@Html.ActionLink("(LAB) Complete Appointment", "CompleteAppoint", "LabAppointStatus", null, null)</li>
-                            <li>@Html.ActionLink("(LAB) All Appointment", "AllAppoint", "LabAppointStatus", null, null)</li>
+                            <li>@Html.ActionLink("List of Lab Doctors", "GetAllLabs", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("List of Medical Doctors", "GetAllDoctors", "PatientAppoint", null, null)</li>
+                            <li>@Html.ActionLink("List of Lab Tests", "GetAllTest", "LabSetting", null, null)</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Laboratory Appointments <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Current Appointment", "CurrentAppoint", "LabAppointStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Pending Appointment", "PendingAppoint", "LabAppointStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Cancelled appoinment", "CancelAppoint", "LabAppointStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Completed Appointment", "CompleteAppoint", "LabAppointStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("All Appointment", "AllAppoint", "LabAppointStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
 
-
-
-                            <li>@Html.ActionLink("(Doctor) Current Appointment", "CurrentAppoint", "DoctorAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("(Doctor)Pending Appointment", "PendingAppoint", "DoctorAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("(Doctor)Cancel appoinment", "CancelAppoint", "DoctorAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("(Doctor)Complete Appointment", "CompleteAppoint", "DoctorAppointmentStatus", null, null)</li>
-                            <li>@Html.ActionLink("(Doctor)All Appointment", "AllAppoint", "DoctorAppointmentStatus", null, null)</li>
-
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Doctor Appointments <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>@Html.ActionLink("Current Appointment", "CurrentAppoint", "DoctorAppointmentStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Pending Appointment", "PendingAppoint", "DoctorAppointmentStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Cancelled appoinment", "CancelAppoint", "DoctorAppointmentStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("Completed Appointment", "CompleteAppoint", "DoctorAppointmentStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                    <li>@Html.ActionLink("All Appointment", "AllAppoint", "DoctorAppointmentStatus", null, new { @class = "p-3 mb-2 bg-light text-dark" })</li>
+                                </ul>
+                            </li>
                         }
 
                     }
                 }
                 <li>@Html.ActionLink("Logout", "LogoutUser", "Home", null, null)</li>
             </ul>
-        </nav>
+</nav>
     </aside>
 
     <div id="main-wrapper">

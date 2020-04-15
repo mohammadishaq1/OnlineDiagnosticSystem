@@ -4,15 +4,16 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <p>
+        @Html.ActionLink("Create New", "Create", "AccountTypeTables", new { @class = "genric-btn info" })
+
+
+    </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Account Types
         </th>
         <th></th>
     </tr>
@@ -23,8 +24,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AccountTypeID }, new { @class = "genric-btn primary" })
-     
+            @Html.ActionLink("Edit", "Edit", new { id = item.AccountTypeID }, new { @class = "genric-btn primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.AccountTypeID }, new { @class = "genric-btn danger" })
+
         </td>
     </tr>
 }

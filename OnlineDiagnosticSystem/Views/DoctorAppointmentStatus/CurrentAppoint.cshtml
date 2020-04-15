@@ -4,11 +4,7 @@
     ViewBag.Title = "PendingAppoint";
 }
 
-<h2>PendingAppoint</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -21,13 +17,13 @@
             Patient
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+            Appointment Date
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionNo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Reason
         </th>
         <th>Status</th>
     </tr>

@@ -4,13 +4,13 @@
     ViewBag.Title = "All Appoint";
 }
 
-<h2>All Appoint</h2>
+<h2>All Appointments</h2>
 
 
 <table class="table">
     <tr>
         <th>
-            lab
+            lab Doctor
         </th>
         <th>
             Time slot
@@ -19,10 +19,10 @@
             Patient
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+           Appointment Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionNo)
+            Transaction No.
         </th>
         <th>
             Reason
@@ -61,19 +61,19 @@
                 @{
                     if (item.IsComplete == true && item.IsFeeSubmit == true)
                     {
-                        <h2>Complete </h2>
+                        <h2 style="color:forestgreen">Complete </h2>
                     }
                     else if (item.IsComplete == false && item.IsFeeSubmit == true && item.AppointDate < DateTime.Now)
                     {
-                        <h2>cancel</h2>
+                        <h2 style="color:red">cancel</h2>
                     }
                     else if (item.IsComplete == false && item.IsFeeSubmit == false && item.AppointDate >= DateTime.Now)
                     {
-                        <h2>pending</h2>
+                        <h2 style="color:orange">pending</h2>
                     }
                     else if (item.IsComplete == false && item.IsFeeSubmit == false && item.AppointDate < DateTime.Now)
                     {
-                        <h2>pending</h2>
+                        <h2 style="color:red" >Rejected</h2>
                     }
                 }
 

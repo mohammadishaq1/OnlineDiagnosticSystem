@@ -4,9 +4,9 @@
     ViewBag.Title = "Report";
 }
  
-<h2>Enter report: @ViewBag.Message</h2>
 
-<h2>Enter report: @ViewBag.TestName</h2>
+
+<h2>@ViewBag.TestName</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

@@ -46,7 +46,7 @@
                                 @ViewBag.Message
                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.UserTypeID, "Select type", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.UserTypeID, "Select user type", htmlAttributes: new { @class = "control-label col-md-4" })
                                         <div class="col-md-10">
                                             @Html.DropDownList("UserTypeID", null, "Select type", htmlAttributes: new { @class = "form-control" })
                                             @Html.ValidationMessageFor(model => model.UserTypeID, "", new { @class = "text-danger" })
@@ -54,7 +54,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.UserName, "Enter UserName", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.UserName, "User Name", htmlAttributes: new { @class = "control-label col-md-4" })
                                         <div class="col-md-10">
                                             @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
@@ -62,7 +62,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Password, "Enter Password", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.Password, "Password", htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
                                             @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.Email, "Enter Email", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label col-md-2" })
                                         <div class="col-md-10">
                                             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
@@ -78,7 +78,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.ContactNo, "Enter Contact no", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.ContactNo, "Contact no", htmlAttributes: new { @class = "control-label col-md-4" })
                                         <div class="col-md-10">
                                             @Html.EditorFor(model => model.ContactNo, new { htmlAttributes = new { @class = "form-control" } })
                                             @Html.ValidationMessageFor(model => model.ContactNo, "", new { @class = "text-danger" })

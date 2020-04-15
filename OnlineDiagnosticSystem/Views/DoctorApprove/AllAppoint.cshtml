@@ -4,11 +4,7 @@
     ViewBag.Title = "All Appointment";
 }
 
-<h2>Current Appointment</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -63,11 +59,11 @@
                 @{
                     if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
                     {
-                        <h2>Complete </h2>
+                        <h2 style="color:forestgreen">Completed </h2>
                     }
                     else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
                     {
-                        <h2>cancel</h2>
+                        <h2  style="color:red">Cancelled</h2>
                     }
                     else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
                     {

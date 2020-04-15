@@ -148,7 +148,7 @@ namespace OnlineDiagnosticSystem.Controllers
                     {
                         db.LabAppointTables.Add(appointment);
                         db.SaveChanges();
-                        ViewBag.Message = "Appointment subbmitted";
+                        ViewBag.Message = "Appointment submitted successfully";
                     }
                     else
                     {

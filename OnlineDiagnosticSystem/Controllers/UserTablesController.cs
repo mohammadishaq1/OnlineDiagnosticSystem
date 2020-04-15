@@ -25,6 +25,56 @@ namespace OnlineDiagnosticSystem.Controllers
             return View(userTables.ToList());
         }
 
+        public ActionResult AllPendingDoctors()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var userTables = db.UserTables.Where(u=>u.UserTypeID ==2 && u.isVerified == false);
+            return View(userTables.ToList());
+        }
+
+        public ActionResult AllPendingLab()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var userTables = db.UserTables.Where(u => u.UserTypeID == 3 && u.isVerified == false);
+            return View(userTables.ToList());
+        }
+
+
+        public ActionResult AllLab()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var userTables = db.UserTables.Where(u => u.UserTypeID == 3 && u.isVerified == true);
+            return View(userTables.ToList());
+        }
+
+        public ActionResult AllDoc()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var userTables = db.UserTables.Where(u => u.UserTypeID == 2 && u.isVerified == true);
+            return View(userTables.ToList());
+        }
+
+        public ActionResult AllPatients()
+        {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            var userTables = db.UserTables.Where(u => u.UserTypeID == 4 && u.isVerified == true);
+            return View(userTables.ToList());
+        }
         // GET: UserTables/Details/5
         public ActionResult Details(int? id)
         {

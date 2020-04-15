@@ -1,11 +1,12 @@
-﻿@model IEnumerable<DatabaseLayer.LabTable>
+﻿@model IEnumerable<DatabaseLayer.UserTable>
 
 @{
-    ViewBag.Title = "GetAllLabs";
+    ViewBag.Title = "All Users";
 }
 
 <div class="card-header py-3">
-    <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2"  placeholder="Search" />
+
+    <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2" placeholder="Search" />
 </div>
 <div class="card-body">
     <div class="table-responsive">
@@ -13,23 +14,25 @@
             <thead>
                 <tr>
                     <th>
-                        Lab Doctor Name
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Photo)
-                    </th>
-                    <th>
-                        Contact Number
-                    </th>
-                    <th>
-                       Phone Number
-                    </th>
-                    <th>
-                       Email Address
+                        @Html.DisplayNameFor(model => model.UserName)
                     </th>
 
-
-                    <th>Action</th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ContactNo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.isVerified)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserTypeTable.UserType)
+                    </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody id="searchvalue">
@@ -37,33 +40,30 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Name)
+                            @Html.DisplayFor(modelItem => item.UserName)
                         </td>
-                        <td>
-                            @{ if (!string.IsNullOrEmpty(item.Photo))
-                                {
-                                    <img src="@Url.Content(item.Photo)" alt="Image" style="width:50px; height:50px; max-width:100%; height:auto" />
-                                }
 
-                            }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ContactNo)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNo)
+                            @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                            @Html.DisplayFor(modelItem => item.isVerified)
                         </td>
-
                         <td>
-                            @Html.ActionLink("Appointment", "LabTests", new { id = item.LabID }, new { @class = "genric-btn primary" })
+                            @Html.DisplayFor(modelItem => item.UserTypeTable.UserType)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.UserID }, new { @class = "genric-btn primary" })
 
                         </td>
                     </tr>
                 }
-
             </tbody>
         </table>
     </div>

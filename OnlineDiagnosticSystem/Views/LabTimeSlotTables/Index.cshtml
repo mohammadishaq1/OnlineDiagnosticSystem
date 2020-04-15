@@ -26,7 +26,7 @@
                     </th>
 
                     <th>
-                        Status
+                        Active
                     </th>
 
                     <th>Action</th>
@@ -52,7 +52,7 @@
 
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.LabTimeSlotID }, new { @class = "genric-btn primary" })
-
+                        @Html.ActionLink("Delete", "Delete", new { id = item.LabTimeSlotID }, new { @class = "genric-btn danger" })
                     </td>
                 </tr>
                 }

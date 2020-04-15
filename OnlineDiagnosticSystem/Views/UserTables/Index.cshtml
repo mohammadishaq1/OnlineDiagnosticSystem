@@ -4,10 +4,11 @@
     ViewBag.Title = "All Users";
 }
 
-<div class="card-header py-3">
-  
-    <input type="text" id="txtsearch" name="txtsearch" class="form-control col-md-2" style="float:right" placeholder="Search" />
-</div>
+    <div class="card-header py-3">
+
+        <input type="text" id="txtsearch" name="txtsearch"  placeholder="Search" />
+       
+    </div>
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -60,6 +61,7 @@
                         </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.UserID }, new { @class = "genric-btn primary" })
+                           
 
                         </td>
                     </tr>

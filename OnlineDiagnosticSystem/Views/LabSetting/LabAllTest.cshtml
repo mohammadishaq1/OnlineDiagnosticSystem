@@ -37,12 +37,11 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.Cost)
                         </td>
+                       
                         <td>
-                            @Html.DisplayFor(modelItem => item.LabTable.Name)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "EditTest", new { id = item.LabTestID }) |
-                            @Html.ActionLink("Details","TestDetails", new { id = item.LabTestID }) |
+                            @Html.ActionLink("Add Test Details", "TestDetails", new { id = item.LabTestID }, new { @class = "genric-btn info" })
+                            @Html.ActionLink("Edit", "EditTest", new { id = item.LabTestID }, new { @class = "genric-btn danger" })
+
 
                         </td>
                     </tr>

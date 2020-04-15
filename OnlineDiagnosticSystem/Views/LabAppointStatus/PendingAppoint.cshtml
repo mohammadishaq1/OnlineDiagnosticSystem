@@ -4,34 +4,30 @@
     ViewBag.Title = "PendingAppoint";
 }
 
-<h2>Pending Appoint</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+            Appointment Date
         </th>
-       
+
         <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TransactionNo)
+            Reason
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LabTable.Name)
+            Transaction No.
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LabTestTable.Name)
+            Lab doctor
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LabTimeSlotTable.Name)
+            Test Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PatientTable.Name)
+            Appointment time slot
+        </th>
+        <th>
+            Patient Name
         </th>
         <th></th>
     </tr>
@@ -61,7 +57,7 @@
             @Html.DisplayFor(modelItem => item.PatientTable.Name)
         </td>
         <td>
-           <h4>Pending</h4>
+           <h4 style="color:orange">Pending</h4>
         </td>
     </tr>
 }

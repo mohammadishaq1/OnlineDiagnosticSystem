@@ -36,17 +36,7 @@ namespace OnlineDiagnosticSystem.Controllers
             return View(currentappointment);
         }
 
-        //public ActionResult CurrentAppointment()
-        //{
-        //    if (string.IsNullOrEmpty(Convert.ToString(Session["UserName"])))
-        //    {
-        //        return RedirectToAction("Login", "Home");
-        //    }
-
-        //    var patient = (PatientTable)Session["Patient"];
-        //    var pendingappointment = db.DoctorAppointTables.Where(d => d.PatientID == patient.PatientID && d.IsChecked == false && d.IsFeeSubmit == false && string.IsNullOrEmpty(d.DoctorComment) == true);
-        //    return View(pendingappointment);
-        //}
+     
 
         public ActionResult CompleteAppoint()
         {

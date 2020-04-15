@@ -4,30 +4,30 @@
     ViewBag.Title = "Current Appoint";
 }
 
-<h2>Current Appoint</h2>
+<h2>Current Appointments</h2>
 
 
 <table class="table">
     <tr>
         <th>
-            lab
+            lab doctor name
         </th>
         <th>
             Time slot
         </th>
         <th>
-            Patient
+            Patient Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+           Appointment date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionNo)
+           Transaction No.
         </th>
         <th>
             Reason
         </th>
-        <th>Status</th>
+        <th>Payment</th>
         <th>Action</th>
     </tr>
 
@@ -58,7 +58,7 @@
 
             <td>
 
-                <h2>Approved</h2>
+                <h2 style="color:forestgreen">Paid</h2>
 
             </td>
             <td>
