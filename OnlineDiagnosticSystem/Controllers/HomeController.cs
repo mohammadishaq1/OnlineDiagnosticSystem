@@ -18,6 +18,7 @@ namespace OnlineDiagnosticSystem.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
+            ViewBag.user = Session["UserName"];
             return View();
         }
         public ActionResult StartTemplate()

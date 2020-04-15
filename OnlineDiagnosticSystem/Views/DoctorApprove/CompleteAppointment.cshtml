@@ -10,16 +10,14 @@
 <table class="table">
     <tr>
         <th>
-            Doctor
+            Patient
         </th>
         <th>
             Time slot
         </th>
+
         <th>
-            Patient
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+            Appointment Date
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionNo)
@@ -28,41 +26,43 @@
             Reason
         </th>
         <th>Status</th>
-      
+        <th>Advise</th>
+     
+
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppointDate)
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PatientTable.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
+    </td>
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppointDate)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
 
 
 
-            <td>
+    <td>
 
-                <h2 style="color:forestgreen">Completed </h2>
+        <h4 style="color:forestgreen">Completed </h4>
 
-            </td>
-           
-        </tr>
+    </td>
+    <td> @Html.DisplayFor(modelItem => item.DoctorComment)</td>
+    <td>@Html.ActionLink("Print Prescription", "PrintPrescription", new { id = item.DoctorAppointID }, new { @class = "genric-btn info" })</td>
+    
+</tr>
     }
 
 </table>

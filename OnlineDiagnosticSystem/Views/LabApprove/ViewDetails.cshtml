@@ -2,33 +2,29 @@
 
 @{
     ViewBag.Title = "ViewDetails";
-     
-  
+
+
 }
 
 
-<button onclick="window.print()">Print this page</button>
-<table>
-    <tr>
-        <td><h3>Test Name: @ViewBag.TestName</h3></td>
-        <td><h3>Lab Name: @ViewBag.Lab</h3></td>
-        <td><h3>@ViewBag.TestName</h3></td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Patient Name: @ViewBag.Patient</h3>
-        </td>
-        <td><h3>Appointment no: @ViewBag.AppointmentNo</h3></td>
-        <td>
-            @{ if (!string.IsNullOrEmpty(ViewBag.PatientPhoto))
-                {
-                    <img src="@Url.Content(ViewBag.PatientPhoto)" alt="Image" style="width:50px; height:50px; max-width:100%; height:auto" />
-                }
 
-                }
-            </td>
-    </tr>
-</table>
+<h4>Test Name: @ViewBag.TestName</h4>
+<h4>Lab Doctor Name: @ViewBag.Lab</h4>
+
+
+
+<h4>Patient Name: @ViewBag.Patient</h4>
+        
+<h4>Appointment no: @ViewBag.AppointmentNo</h4>
+
+@{ if (!string.IsNullOrEmpty(ViewBag.PatientPhoto))
+    {
+        <img src="@Url.Content(ViewBag.PatientPhoto)" alt="Image" style="width:50px; height:50px; max-width:100%; height:auto" />
+    }
+
+}
+
+
 
 
 <table class="table">
@@ -42,7 +38,7 @@
         <th>
             Max Value
         </th>
-        <th> Patient Vlaue</th>
+        <th> Patient Value</th>
     </tr>
 
     @foreach (var item in Model)
@@ -65,3 +61,4 @@
     }
 
 </table>
+<button onclick="window.print()">Print Report</button>

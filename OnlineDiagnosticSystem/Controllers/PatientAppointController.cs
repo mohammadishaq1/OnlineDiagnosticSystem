@@ -88,6 +88,8 @@ namespace OnlineDiagnosticSystem.Controllers
                 return RedirectToAction("Login", "Home");
             }
             var doc= db.DoctorTables.Find(id);
+        
+    
             return View(doc);
         }
 

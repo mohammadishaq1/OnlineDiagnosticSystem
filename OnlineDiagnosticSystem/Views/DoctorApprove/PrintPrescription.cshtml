@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DatabaseLayer.DoctorAppointTable>
+
+@{
+    ViewBag.Title = "PrintPrescription";
+    Layout = null;
+}
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+
+
+<div class="container">
+
+    <h2>Doctor Prescription</h2>
+
+    <table class="table table-striped table-condensed">
+        <tr>
+
+            <th>
+                Patient Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointDate)
+            </th>
+
+            <th>
+                Doctor Advise and medicine required from Pharmarcy
+            </th>
+            <th>
+                Doctor Name
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientTable.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AppointDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorComment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoctorTable.Name)
+                </td>
+
+
+
+            </tr>
+        }
+
+    </table>
+    <br />
+    <br />
+    <br />
+    <br />
+    <p>Doctor signature------------</p>
+    <br />
+    <br />
+    <br />
+    <button onclick="window.print()">Print Prescription</button>
+
+</div>
+

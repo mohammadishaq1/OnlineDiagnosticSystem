@@ -4,8 +4,6 @@
     ViewBag.Title = "DoctorProfile";
 }
 
-<h2>DoctorProfile</h2>
-
 
 <div>
 
@@ -91,18 +89,7 @@
             @Html.DisplayFor(model => model.PerDayMaxAppitmnt)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GenderTable.Name)
-        </dt>
+    
 
 
 
@@ -112,8 +99,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+          
+            @Html.ActionLink("Back to List", "GetAllDoctors", "GetAllDoctors", new { @class="genric-btn success"})
         </div>
     }
 </div>

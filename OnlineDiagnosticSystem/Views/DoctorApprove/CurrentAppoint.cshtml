@@ -10,16 +10,14 @@
 <table class="table">
     <tr>
         <th>
-            Doctor
+            Patient
         </th>
         <th>
             Time slot
         </th>
+
         <th>
-            Patient
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+            Appointment Date
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionNo)
@@ -35,14 +33,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DoctorTable.Name)
+                @Html.DisplayFor(modelItem => item.PatientTable.Name)
             </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientTable.Name)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.AppointDate)
 

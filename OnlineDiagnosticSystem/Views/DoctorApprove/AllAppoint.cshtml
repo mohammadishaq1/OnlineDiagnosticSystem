@@ -8,16 +8,14 @@
 <table class="table">
     <tr>
         <th>
-            Doctor
+            Patient
         </th>
         <th>
             Time slot
         </th>
+
         <th>
-            Patient
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AppointDate)
+            Appointment date
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TransactionNo)
@@ -26,58 +24,57 @@
             Reason
         </th>
         <th>Status</th>
-        <th>Action</th>
+        <th>Advise</th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PatientTable.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AppointDate)
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PatientTable.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorTimeSlotTable.Name)
+    </td>
 
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AppointDate)
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TransactionNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
 
 
 
-            <td>
+    <td>
 
-                @{
-                    if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
-                    {
-                        <h2 style="color:forestgreen">Completed </h2>
-                    }
-                    else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
-                    {
-                        <h2  style="color:red">Cancelled</h2>
-                    }
-                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
-                    {
-                        <h2>pending</h2>
-                    }
-                    else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length > 0)
-                    {
-                        <h2>pending</h2>
-                    }
-                }
+        @{
+            if (item.IsChecked == true && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+            {
+                <h2 style="color:forestgreen">Completed </h2>
+            }
+            else if (item.IsChecked == false && item.IsFeeSubmit == true && item.DoctorComment.Length > 0)
+            {
+                <h2 style="color:red">Cancelled</h2>
+            }
+            else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length == 0)
+            {
+                <h2>pending</h2>
+            }
+            else if (item.IsChecked == false && item.IsFeeSubmit == false && item.DoctorComment.Length > 0)
+            {
+                <h2>pending</h2>
+            }
+        }
 
-            </td>
-          
-        </tr>
+    </td>
+    <td>   @Html.DisplayFor(modelItem => item.DoctorComment)</td>
+
+</tr>
     }
 
 </table>

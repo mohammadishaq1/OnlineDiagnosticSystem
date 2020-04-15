@@ -117,5 +117,10 @@ namespace OnlineDiagnosticSystem.Controllers
 
             return View(app);
         }
+
+        public ActionResult PrintPrescription(int? id)
+        {
+            return View(db.DoctorAppointTables.Where(p => p.DoctorAppointID == id).ToList());
+        }
     }
 }
